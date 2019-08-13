@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:control_panel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        MinHeight="200"
+        Height="450"
+        MinWidth="800"
+        Width="800">
   <Grid>
-
+    <Grid.RowDefinitions>
+      <RowDefinition Height="40"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="150"/>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="100"/>
+      <ColumnDefinition Width="100"/>
+    </Grid.ColumnDefinitions>
+    <ComboBox Margin="10" Grid.Row="0" Grid.Column="0"/>
+    <Button Margin="10" Grid.Row="0" Grid.Column="1" Content="Connect"/>
+    <Button Margin="10" Grid.Row="0" Grid.Column="3" Content="Question"/>
+    <Button Margin="10" Grid.Row="0" Grid.Column="4" Content="Correct"/>
+    <Button Margin="10" Grid.Row="0" Grid.Column="5" Content="Wrong"/>
+    <Button Margin="10" Grid.Row="0" Grid.Column="7" Content="Reset"/>
+    <Button Margin="10" Grid.Row="0" Grid.Column="8" Content="Next"/>
+    <TextBox Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9"/>
   </Grid>
 </Window>
