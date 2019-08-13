@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:control_panel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        MinHeight="200"
+        Height="450"
+        MinWidth="800"
+        Width="800">
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="40"/>
