@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,18 @@ namespace control_panel
     public MainWindow()
     {
       InitializeComponent();
+    }
+
+    /// <summary>
+    /// Event when ComboBoxSerialPortList is dropdown
+    /// </summary>
+    private void ComboBox_DropDownOpened(object sender, EventArgs e)
+    {
+      string[] Ports = SerialPort.GetPortNames();
+
+      ComboBoxSerialPortList.Items.Clear();
+      foreach (string tmp in Ports)
+        ComboBoxSerialPortList.Items.Add(tmp);
     }
   }
 }
