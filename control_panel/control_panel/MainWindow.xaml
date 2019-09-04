@@ -27,12 +27,12 @@
       <ColumnDefinition Width="100"/>
     </Grid.ColumnDefinitions>
     <ComboBox Name="ComboBoxSerialPortList" Margin="10" Grid.Row="0" Grid.Column="0" DropDownOpened="ComboBox_DropDownOpened"/>
-    <Button Margin="10" Grid.Row="0" Grid.Column="1" Content="Connect"/>
+    <Button Name="ButtonConnect" Margin="10" Grid.Row="0" Grid.Column="1" Content="Connect" Click="ButtonConnect_Click"/>
     <Button Margin="10" Grid.Row="0" Grid.Column="3" Content="Question"/>
     <Button Margin="10" Grid.Row="0" Grid.Column="4" Content="Correct"/>
     <Button Margin="10" Grid.Row="0" Grid.Column="5" Content="Wrong"/>
-    <Button Margin="10" Grid.Row="0" Grid.Column="7" Content="Reset"/>
-    <Button Margin="10" Grid.Row="0" Grid.Column="8" Content="Next"/>
+    <Button Name="ButtonSerialReset" Margin="10" Grid.Row="0" Grid.Column="7" Content="Reset"/>
+    <Button Name="ButtonSerialNext" Margin="10" Grid.Row="0" Grid.Column="8" Content="Next"/>
     <TextBox Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9"/>
   </Grid>
 </Window>

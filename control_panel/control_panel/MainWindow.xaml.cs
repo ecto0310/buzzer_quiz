@@ -21,6 +21,8 @@ namespace control_panel
   /// </summary>
   public partial class MainWindow : Window
   {
+    SerialPort serialPort = new SerialPort();
+
     public MainWindow()
     {
       InitializeComponent();
@@ -36,6 +38,35 @@ namespace control_panel
       ComboBoxSerialPortList.Items.Clear();
       foreach (string tmp in Ports)
         ComboBoxSerialPortList.Items.Add(tmp);
+    }
+
+    /// <summary>
+    /// Event when ButtonConnect is click
+    /// </summary>
+    private void ButtonConnect_Click(object sender, RoutedEventArgs e)
+    {
+      if (serialPort.IsOpen)
+      {
+        serialPort.Close();
+
+        ComboBoxSerialPortList.IsEnabled = true;
+        ButtonSerialReset.IsEnabled = false;
+        ButtonSerialNext.IsEnabled = false;
+        ButtonConnect.Content = "Connect";
+      }
+      else
+      {
+        if (ComboBoxSerialPortList.SelectedItem == null)
+          return;
+
+        serialPort.PortName = ComboBoxSerialPortList.SelectedItem.ToString();
+        serialPort.Open();
+
+        ComboBoxSerialPortList.IsEnabled = false;
+        ButtonSerialReset.IsEnabled = true;
+        ButtonSerialNext.IsEnabled = true;
+        ButtonConnect.Content = "Disconnect";
+      }
     }
   }
 }
