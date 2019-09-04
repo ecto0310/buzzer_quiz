@@ -59,5 +59,32 @@ namespace control_panel
         soundBuzzer.Load();
       }
     }
+
+    /// <summary>
+    /// Event when ButtonSoundQuestion is click
+    /// </summary>
+    private void ButtonSoundQuestion_Click(object sender, RoutedEventArgs e)
+    {
+      if (soundQuestion.IsLoadCompleted)
+        soundQuestion.Play();
+    }
+
+    /// <summary>
+    /// Event when ButtonSoundCorrect is click
+    /// </summary>
+    private void ButtonSoundCorrect_Click(object sender, RoutedEventArgs e)
+    {
+      if (soundCorrect.IsLoadCompleted)
+        soundCorrect.Play();
+    }
+
+    /// <summary>
+    /// Event when ButtonSoundWrong is click
+    /// </summary>
+    private void ButtonSoundWrong_Click(object sender, RoutedEventArgs e)
+    {
+      if (soundWrong.IsLoadCompleted)
+        soundWrong.Play();
+    }
   }
 }
