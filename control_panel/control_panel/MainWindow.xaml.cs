@@ -26,6 +26,18 @@ namespace control_panel
     public MainWindow()
     {
       InitializeComponent();
+      Initialize();
+    }
+
+    /// <summary>
+    /// Initialization process
+    /// </summary>
+    private void Initialize()
+    {
+      serialPort.DataReceived += (s, e) =>
+      {
+        string readData = serialPort.ReadTo("\n");
+      };
     }
 
     /// <summary>
