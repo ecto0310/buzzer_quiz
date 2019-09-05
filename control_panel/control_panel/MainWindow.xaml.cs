@@ -80,5 +80,21 @@ namespace control_panel
         ButtonConnect.Content = "Disconnect";
       }
     }
+
+    /// <summary>
+    /// Event when ButtonSerialReset is click
+    /// </summary>
+    private void ButtonSerialReset_Click(object sender, RoutedEventArgs e)
+    {
+      serialPort.Write("r");
+    }
+
+    /// <summary>
+    /// Event when ButtonSerialNext is click
+    /// </summary>
+    private void ButtonSerialNext_Click(object sender, RoutedEventArgs e)
+    {
+      serialPort.Write("n");
+    }
   }
 }
