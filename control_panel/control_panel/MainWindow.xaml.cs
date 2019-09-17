@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO.Ports;
 using System.Linq;
 using System.Media;
 using System.Text;
@@ -26,6 +27,8 @@ namespace control_panel
     private SoundPlayer soundCorrect = new SoundPlayer();
     private SoundPlayer soundWrong = new SoundPlayer();
     private SoundPlayer soundBuzzer = new SoundPlayer();
+    
+    SerialPort serialPort = new SerialPort();
 
     public MainWindow()
     {
@@ -38,6 +41,11 @@ namespace control_panel
     /// </summary>
     private void Initialize()
     {
+      serialPort.DataReceived += (s, e) =>
+      {
+        string readData = serialPort.ReadTo("\n");
+      };
+
       if (ConfigurationManager.AppSettings["PathSoundQuestion"] != null)
       {
         soundQuestion.SoundLocation = ConfigurationManager.AppSettings["PathSoundQuestion"];
@@ -85,6 +93,63 @@ namespace control_panel
     {
       if (soundWrong.IsLoadCompleted)
         soundWrong.Play();
+    }
+
+    /// <summary>
+    /// Event when ComboBoxSerialPortList is dropdown
+    /// </summary>
+    private void ComboBox_DropDownOpened(object sender, EventArgs e)
+    {
+      string[] Ports = SerialPort.GetPortNames();
+
+      ComboBoxSerialPortList.Items.Clear();
+      foreach (string tmp in Ports)
+        ComboBoxSerialPortList.Items.Add(tmp);
+    }
+
+    /// <summary>
+    /// Event when ButtonConnect is click
+    /// </summary>
+    private void ButtonConnect_Click(object sender, RoutedEventArgs e)
+    {
+      if (serialPort.IsOpen)
+      {
+        serialPort.Close();
+
+        ComboBoxSerialPortList.IsEnabled = true;
+        ButtonSerialReset.IsEnabled = false;
+        ButtonSerialNext.IsEnabled = false;
+        ButtonConnect.Content = "Connect";
+      }
+      else
+      {
+        if (ComboBoxSerialPortList.SelectedItem == null)
+          return;
+
+        serialPort.PortName = ComboBoxSerialPortList.SelectedItem.ToString();
+        serialPort.Open();
+
+        ComboBoxSerialPortList.IsEnabled = false;
+        ButtonSerialReset.IsEnabled = true;
+        ButtonSerialNext.IsEnabled = true;
+        ButtonConnect.Content = "Disconnect";
+      }
+    }
+
+    /// <summary>
+    /// Event when ButtonSerialReset is click
+    /// </summary>
+    private void ButtonSerialReset_Click(object sender, RoutedEventArgs e)
+    {
+      serialPort.Write("r");
+    }
+
+    /// <summary>
+    /// Event when ButtonSerialNext is click
+    /// </summary>
+    private void ButtonSerialNext_Click(object sender, RoutedEventArgs e)
+    {
+      serialPort.Write("n");
     }
   }
 }

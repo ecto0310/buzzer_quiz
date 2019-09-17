@@ -26,13 +26,13 @@
       <ColumnDefinition Width="100"/>
       <ColumnDefinition Width="100"/>
     </Grid.ColumnDefinitions>
-    <ComboBox Margin="10" Grid.Row="0" Grid.Column="0"/>
-    <Button Margin="10" Grid.Row="0" Grid.Column="1" Content="Connect"/>
+    <ComboBox Name="ComboBoxSerialPortList" Margin="10" Grid.Row="0" Grid.Column="0" DropDownOpened="ComboBox_DropDownOpened"/>
+    <Button Name="ButtonConnect" Margin="10" Grid.Row="0" Grid.Column="1" Content="Connect" Click="ButtonConnect_Click"/>
     <Button Name="ButtonSoundQuestion" Margin="10" Grid.Row="0" Grid.Column="3" Content="Question" Click="ButtonSoundQuestion_Click"/>
     <Button Name="ButtonSoundCorrect" Margin="10" Grid.Row="0" Grid.Column="4" Content="Correct" Click="ButtonSoundCorrect_Click"/>
     <Button Name="ButtonSoundWrong" Margin="10" Grid.Row="0" Grid.Column="5" Content="Wrong" Click="ButtonSoundWrong_Click"/>
-    <Button Margin="10" Grid.Row="0" Grid.Column="7" Content="Reset"/>
-    <Button Margin="10" Grid.Row="0" Grid.Column="8" Content="Next"/>
+    <Button Name="ButtonSerialReset" Margin="10" Grid.Row="0" Grid.Column="7" Content="Reset" Click="ButtonSerialReset_Click" IsEnabled="False"/>
+    <Button Name="ButtonSerialNext" Margin="10" Grid.Row="0" Grid.Column="8" Content="Next" Click="ButtonSerialNext_Click" IsEnabled="False"/>
     <TextBox Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9"/>
   </Grid>
 </Window>
