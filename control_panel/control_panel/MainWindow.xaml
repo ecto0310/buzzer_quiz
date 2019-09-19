@@ -33,6 +33,6 @@
     <Button Name="ButtonSoundWrong" Margin="10" Grid.Row="0" Grid.Column="5" Content="Wrong" Click="ButtonSoundWrong_Click"/>
     <Button Name="ButtonSerialReset" Margin="10" Grid.Row="0" Grid.Column="7" Content="Reset" Click="ButtonSerialReset_Click" IsEnabled="False"/>
     <Button Name="ButtonSerialNext" Margin="10" Grid.Row="0" Grid.Column="8" Content="Next" Click="ButtonSerialNext_Click" IsEnabled="False"/>
-    <TextBox Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9"/>
+    <TextBox Name="TextBoxLog" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="9"/>
   </Grid>
 </Window>

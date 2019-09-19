@@ -27,7 +27,7 @@ namespace control_panel
     private SoundPlayer soundCorrect = new SoundPlayer();
     private SoundPlayer soundWrong = new SoundPlayer();
     private SoundPlayer soundBuzzer = new SoundPlayer();
-    
+
     SerialPort serialPort = new SerialPort();
 
     public MainWindow()
@@ -150,6 +150,15 @@ namespace control_panel
     private void ButtonSerialNext_Click(object sender, RoutedEventArgs e)
     {
       serialPort.Write("n");
+    }
+
+    ///<summary>
+    /// Write log function
+    /// </summary>
+    public void WriteLog(string msg, string type)
+    {
+      TextBoxLog.Text += DateTime.Now + " [" + type + "] " + msg + "\r\n";
+      TextBoxLog.ScrollToEnd();
     }
   }
 }
