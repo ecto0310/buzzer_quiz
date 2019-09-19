@@ -45,6 +45,8 @@ namespace control_panel
       {
         string readData = serialPort.ReadTo("\n");
         Dispatcher.Invoke(new Action(() => WriteLog(readData, "Read")));
+        if (3 <= readData.Length && readData.Substring(0, 3) == "Ans" && soundBuzzer.IsLoadCompleted)
+          soundBuzzer.Play();
       };
 
       if (ConfigurationManager.AppSettings["PathSoundQuestion"] != null)
