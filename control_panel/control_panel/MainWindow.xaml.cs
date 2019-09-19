@@ -27,7 +27,7 @@ namespace control_panel
     private SoundPlayer soundCorrect = new SoundPlayer();
     private SoundPlayer soundWrong = new SoundPlayer();
     private SoundPlayer soundBuzzer = new SoundPlayer();
-    
+
     SerialPort serialPort = new SerialPort();
 
     public MainWindow()
@@ -44,6 +44,7 @@ namespace control_panel
       serialPort.DataReceived += (s, e) =>
       {
         string readData = serialPort.ReadTo("\n");
+        Dispatcher.Invoke(new Action(() => WriteLog(readData, "Read")));
       };
 
       if (ConfigurationManager.AppSettings["PathSoundQuestion"] != null)
@@ -66,6 +67,10 @@ namespace control_panel
         soundBuzzer.SoundLocation = ConfigurationManager.AppSettings["PathSoundBuzzer"];
         soundBuzzer.Load();
       }
+      if (soundQuestion.IsLoadCompleted && soundCorrect.IsLoadCompleted && soundWrong.IsLoadCompleted && soundBuzzer.IsLoadCompleted)
+        WriteLog("All sound loaded successfully.", "Info");
+      else
+        WriteLog("Some sounds could not be loaded successfully.", "Info");
     }
 
     /// <summary>
@@ -150,6 +155,15 @@ namespace control_panel
     private void ButtonSerialNext_Click(object sender, RoutedEventArgs e)
     {
       serialPort.Write("n");
+    }
+
+    ///<summary>
+    /// Write log function
+    /// </summary>
+    public void WriteLog(string msg, string type)
+    {
+      TextBoxLog.Text += DateTime.Now + " [" + type + "] " + msg + "\r\n";
+      TextBoxLog.ScrollToEnd();
     }
   }
 }
