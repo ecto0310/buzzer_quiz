@@ -26,4 +26,27 @@ void setup()
 
 void loop()
 {
+  //Check the pin
+  for (int i = 0; i < cntPlayer; i++)
+  {
+    int NowStatus = digitalRead(playerStatus[i].Input);
+    if (playerStatus[i].Status != NowStatus && playerStatus[i].Finish == 0)
+    {
+      solver[receive] = i;
+      receive++;
+      playerStatus[i].Finish = 1;
+      Serial.print("Push:");
+      Serial.println(i);
+    }
+    playerStatus[i].Status = NowStatus;
+  }
+
+  //Lamp on
+  if (solver[now] != -1)
+  {
+    digitalWrite(playerStatus[solver[now]].Output, HIGH);
+    Serial.print("Ans:");
+    Serial.println(solver[now]);
+    solver[now] = -1;
+  }
 }
