@@ -26,6 +26,31 @@ void setup()
 
 void loop()
 {
+  //Read serial
+  char Message = Serial.read();
+  switch (Message)
+  {
+  case 'n':
+    if (receive <= now || cntPlayer <= now + 1)
+      break;
+    for (int i = 0; i < cntPlayer; i++)
+      digitalWrite(playerStatus[i].Output, LOW);
+    now++;
+    Serial.println("Successful next display");
+    break;
+  case 'r':
+    for (int i = 0; i < cntPlayer; i++)
+    {
+      digitalWrite(playerStatus[i].Output, LOW);
+      playerStatus[i].Finish = 0;
+      solver[i] = -1;
+    }
+    now = 0;
+    receive = 0;
+    Serial.println("Successful reset");
+    break;
+  }
+
   //Check the pin
   for (int i = 0; i < cntPlayer; i++)
   {
